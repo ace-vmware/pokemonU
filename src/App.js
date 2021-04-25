@@ -32,6 +32,14 @@ class App extends Component {
     console.log(fetchedPokemon)
   }
 
+  titleCase(string) {
+  var sentence = string.toLowerCase().split(" ");
+  for(var i = 0; i< sentence.length; i++){
+      sentence[i] = sentence[i][0].toUpperCase() + sentence[i].slice(1);
+  }
+
+    return sentence.join(" ");
+  }
   
 
   render() {
@@ -39,7 +47,7 @@ class App extends Component {
         const pokes = pokemon.map((poke) => {
           console.log(poke)
           const id = poke.entry_number
-          const name = poke.pokemon_species.name
+          const name = this.titleCase(poke.pokemon_species.name)
           const src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`
           // return <img src={src} alt="poke"/>
           return <p>{id}. {name}</p>
@@ -48,7 +56,6 @@ class App extends Component {
       })
     return(
       <div>
-        <p>Words</p>
         <img
         src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/25.svg"
         alt="Pikachu"
