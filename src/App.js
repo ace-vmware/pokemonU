@@ -1,6 +1,10 @@
 import './App.css';
 import React, { Component } from 'react'
+import {Modal, Button, Col, Row} from 'react-bootstrap-v5'
 import { Pokedex } from 'pokeapi-js-wrapper'
+import Menu from "./Menu"
+import Sidebar from "./Sidebar"
+import Container from "./Container"
 
 const customOptions = {
   protocol: "https",
@@ -16,11 +20,17 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pokemon: []
+      pokemon: [],
+      focus: undefined
     }
+    this.fetchPokemonByName = this.fetchPokemonByName.bind(this);
   }
 
   async componentDidMount() {
+    this.getPokedex();
+  }
+
+  async getPokedex() {
     const kantoPokedex = await P.getPokedexByName("kanto")
     this.setState({
       pokemon: [kantoPokedex.pokemon_entries]
@@ -29,38 +39,28 @@ class App extends Component {
 
   async fetchPokemonByName(name) {
     const fetchedPokemon = await P.getPokemonByName(name)
-    console.log(fetchedPokemon)
-  }
-
-  titleCase(string) {
-  var sentence = string.toLowerCase().split(" ");
-  for(var i = 0; i< sentence.length; i++){
-      sentence[i] = sentence[i][0].toUpperCase() + sentence[i].slice(1);
-  }
-
-    return sentence.join(" ");
+    this.setState({
+      focus: fetchedPokemon
+    })
+    const src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${name}.svg`
+    this.state.focus["src"] =  src
   }
   
 
   render() {
-      const allImages = this.state.pokemon.map((pokemon) => {
-        const pokes = pokemon.map((poke) => {
-          console.log(poke)
-          const id = poke.entry_number
-          const name = this.titleCase(poke.pokemon_species.name)
-          const src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`
-          // return <img src={src} alt="poke"/>
-          return <p>{id}. {name}</p>
-        })
-        return pokes
-      })
+
     return(
-      <div>
-        <img
-        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/25.svg"
-        alt="Pikachu"
-      />
-      {allImages}
+      <div className="App">
+        <Menu />
+        <Row>
+          <Col xs={4}>
+            <Sidebar pokemon={this.state.pokemon} fetchPokemonByName={this.fetchPokemonByName}/>
+          </Col>
+          <Col xs={8}>
+            <Container focus={this.state.focus} />
+          </Col>
+        </Row>
+        
       </div>
     )
   }
