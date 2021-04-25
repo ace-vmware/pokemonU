@@ -12,6 +12,30 @@ code {
     monospace;
 }
 
-.Menu {
-  height: 300px;
+.App {
+  height: 100vh;
 }
+
+.Menu {
+  height: 100px;
+}
+
+.Sidebar {
+  height: 100vh;
+}
+
+.card {
+  background-color: #CC0000;
+  color: white;
+  border: 4px solid #3B4CCA;
+  border-radius: 2%;
+}
+
+.yellow {
+  color: #FFDE00;
+}
+
+.dark-yellow {
+  background-color: #FFDE00;
+}
+

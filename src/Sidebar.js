@@ -7,7 +7,7 @@ class Sidebar extends Component {
     }
 
     handleClick(e) {
-        this.props.fetchPokemonByName(e.target.dataset.pokemonid)
+        this.props.fetchPokemonByName(e.target.dataset.name)
     }
 
     titleCase(string) {
@@ -23,21 +23,23 @@ class Sidebar extends Component {
         const kantoPokedex = this.props.pokemon.map((pokemon) => {
             const pokes = pokemon.map((poke) => {
               const id = poke.entry_number
+              const oName = poke.pokemon_species.name
               const name = this.titleCase(poke.pokemon_species.name)
 
-              return <p className="border border-dark"
+              return <button className="btn btn-light border border-light m-2"
+                        data-name={oName}
                         data-pokemonid={id}
                         onClick={this.handleClick}
               >
                             {id}. {name}
-                        </p>
+                        </button>
             })
             return pokes
           })
         return (
-            <div className="Sidebar">
+            <div className="Sidebar overflow-auto">
                 <div className="d-flex flex-column">
-                {kantoPokedex}
+                    {kantoPokedex}
                 </div>
             </div>
         )

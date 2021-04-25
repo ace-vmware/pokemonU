@@ -24,6 +24,7 @@ class App extends Component {
       focus: undefined
     }
     this.fetchPokemonByName = this.fetchPokemonByName.bind(this);
+    this.getType = this.getType.bind(this);
   }
 
   async componentDidMount() {
@@ -45,18 +46,27 @@ class App extends Component {
     const src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${name}.svg`
     this.state.focus["src"] =  src
   }
+
+  async getType(e) {
+    const regionPokedex = await P.getPokedexByName(e)
+    console.log(regionPokedex)
+    // console.log(regionPokedex)
+    this.setState({
+      pokemon: [regionPokedex.pokemon_entries]
+    })
+  }
   
 
   render() {
 
     return(
-      <div className="App">
-        <Menu />
-        <Row>
-          <Col xs={4}>
+      <div className="App overflow-hidden">
+        <Menu getType={this.getType}/>
+        <Row className="d-flex justify-content-center">
+          <Col xs={3}>
             <Sidebar pokemon={this.state.pokemon} fetchPokemonByName={this.fetchPokemonByName}/>
           </Col>
-          <Col xs={8}>
+          <Col xs={6}>
             <Container focus={this.state.focus} />
           </Col>
         </Row>

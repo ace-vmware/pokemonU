@@ -26,65 +26,81 @@ class Container extends Component {
                 :  
                 (
                     
-                    <div>
-                        <Row xs={12}>
-                            <Col xs={12}>
-                                <Image src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${this.props.focus.id}.svg`} alt={this.props.focus.name}></Image>
-                            </Col> 
-                        </Row>
-                        <Row xs={12}>
-                            <Col xs={12}>
-                                Id: {this.props.focus.id}
-                            </Col>
-                        </Row>
-                        <Row xs={12}>
-                            <Col xs={12}>
-                                Name: {this.props.focus.name}
-                            </Col>
-                        </Row>
-                        <Row xs={12}>
-                            <Col xs={12}>
-                                Types: {this.props.focus.types.map((type) => {
-                                    return (
-                                        <Row xs={12}>
-                                            <Col xs={12}>
-                                                {type.type.name}
-                                            </Col>
-                                        </Row>
-                                    )
-                                 
-                                    })}
+                    <div className="d-flex justify-content-center">
+                        <div className="card shadow w-50 h-50 p-2">
+                            <Row className="my-1" xs={12}>
+                                <Col xs={12}>
+                                    <Image className="w-50 mb-3" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${this.props.focus.id}.svg`} alt={this.props.focus.name}></Image>
+                                </Col>
+                            </Row>
+                            <Row className="my-1" xs={12}>
+                                <Col className="d-flex yellow justify-content-end" xs={6}>
+                                    <b>Id:</b>
+                                </Col>
+                                <Col className="d-flex justify-content-start" xs={6}>
+                                    {this.props.focus.id}
+                                </Col>
+                            </Row>
+                            <Row className="my-1" xs={12}>
+                                <Col className="yellow d-flex justify-content-end" xs={6}>
+                                    <b>Name</b>:
+                                </Col>
+                                <Col className="d-flex justify-content-start" xs={6}>
+                                    {this.props.focus.name}
+                                </Col>
                                 
-                            </Col>
-                        </Row>
-                        <Row xs={12}>
-                            <Col xs={12}>
-                                Height: {this.props.focus.height}
-                            </Col>
-                        </Row>
-                        <Row xs={12}>
-                            <Col xs={12}>
-                                Weight: {this.props.focus.weight}
-                            </Col>
-                        </Row>
-                        <Row xs={12}>
-                            <Col xs={12}>
-                                Base Stats:
-                            </Col>
-                        </Row>
-                        <Row xs={12}>
-                            <Col xs={12}>
-                                {this.props.focus.stats.map((stat) => {
-                                    return (
-                                        <Row xs={12}>
-                                            <Col xs={12}>
+                            </Row>
+                            <Row className="my-1" xs={12}>
+                                <Col className="d-flex yellow justify-content-end" xs={6}>
+                                    <b>Height</b>:
+                                </Col>
+                                <Col className="d-flex justify-content-start" xs={6}>
+                                    {this.props.focus.height}
+                                </Col>
+                            </Row>
+                            <Row className="my-1" xs={12}>
+                                <Col className="d-flex yellow justify-content-end" xs={6}>
+                                    <b>Weight</b>:
+                                </Col>
+                                <Col className="d-flex justify-content-start" xs={6}>
+                                    {this.props.focus.weight}
+                                </Col>
+                            </Row>
+                            <Row className="my-1" xs={12}>
+                                <Col className="d-flex yellow justify-content-end" xs={6}>
+                                    <b>Types</b>:
+                                </Col>
+                                <Col xs={6}>
+                                    {this.props.focus.types.map((type) => {
+                                        return (
+                                                <Col className="d-flex justify-content-start" xs={6}>
+                                                    {type.type.name}
+                                                </Col>
+                                        )
+                            
+                                        })}
+                            
+                                </Col>
+                            </Row>
+                            <Row className="my-1" xs={12}>
+                                <Col className="d-flex yellow justify-content-end" xs={6}>
+                                    <b>Base Stats</b>:
+                                </Col>
+                                <Col xs={6}>
+                                    {this.props.focus.stats.map((stat) => {
+                                        return (
+                                            <Col className="d-flex justify-content-start">
                                                 {stat.stat.name}: {stat.base_stat}
                                             </Col>
-                                        </Row>
-                                    )
-                                })}
-                            </Col>
-                        </Row>
+
+
+                                            
+
+                                        )
+                                    })}
+                                </Col>
+                            </Row>
+                        </div>
                     </div>  
                 )
             }
