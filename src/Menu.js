@@ -8,7 +8,7 @@ class Menu extends Component {
     }
 
     handleClick(e) {
-        this.props.getType(e.target.dataset.type)
+        this.props.getRegion(e.target.dataset.type)
     }
 
     render() {
@@ -27,9 +27,9 @@ class Menu extends Component {
                     </Row>
                 </div>
                 <div className="d-flex justify-content-center align-items-baseline">
-                    <div>Filter by Region:</div>
+                    <h6>Filter by Region:</h6>
                     <div class="dropdown mx-2">
-                        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             Regions
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">

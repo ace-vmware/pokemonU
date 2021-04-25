@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Pokemon Solid";
+  src: local("Pokemon Solid"),
+    url("./fonts/Pokemon Solid.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -12,8 +20,32 @@ code {
     monospace;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #F8F7F2; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #94817B; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #FF0000;
+  border: 2px solid #3B4CCA; 
+}
+
+
+
 .App {
   height: 100vh;
+  background-color: #F8F7F2;
 }
 
 .Menu {
@@ -21,21 +53,33 @@ code {
 }
 
 .Sidebar {
-  height: 100vh;
+  height: 75vh;
 }
 
 .card {
-  background-color: #CC0000;
-  color: white;
-  border: 4px solid #3B4CCA;
-  border-radius: 2%;
+  background-color: #F8F7F2;
+  border: 2px solid #94817B;
 }
 
-.yellow {
+.bord {
+  background-color: #F8F7F2;
+  border: 2px solid #94817B;
+}
+
+.bord:focus-within {
+  font-family: Pokemon Solid;
+  background-color: #FF0000;
   color: #FFDE00;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  border: 5px solid #3B4CCA;
+  font-weight: 500;
 }
 
-.dark-yellow {
-  background-color: #FFDE00;
+.btn:focus {
+  outline: none;
+  box-shadow: none;
 }
+
+
 

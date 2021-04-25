@@ -26,7 +26,7 @@ class Sidebar extends Component {
               const oName = poke.pokemon_species.name
               const name = this.titleCase(poke.pokemon_species.name)
 
-              return <button className="btn btn-light border border-light m-2"
+              return <button aria-disabled="false" className="btn bord text-start  m-2"
                         data-name={oName}
                         data-pokemonid={id}
                         onClick={this.handleClick}

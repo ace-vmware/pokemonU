@@ -1,6 +1,6 @@
 import './App.css';
 import React, { Component } from 'react'
-import {Modal, Button, Col, Row} from 'react-bootstrap-v5'
+import {Col, Row} from 'react-bootstrap-v5'
 import { Pokedex } from 'pokeapi-js-wrapper'
 import Menu from "./Menu"
 import Sidebar from "./Sidebar"
@@ -14,6 +14,8 @@ const customOptions = {
   timeout: 5 * 1000, // 5s
   cacheImages: true
 }
+
+// Create Pokedex object for pokeapi-js-wrapper
 const P = new Pokedex(customOptions)
 
 class App extends Component {
@@ -24,21 +26,27 @@ class App extends Component {
       focus: undefined
     }
     this.fetchPokemonByName = this.fetchPokemonByName.bind(this);
-    this.getType = this.getType.bind(this);
+    this.getRegion = this.getRegion.bind(this);
   }
 
   async componentDidMount() {
+    // Load Pokedex of Region 1 onload
     this.getPokedex();
   }
 
   async getPokedex() {
+    // fetch all Pokemon from region-1 and set this.state.pokemon
     const kantoPokedex = await P.getPokedexByName("kanto")
     this.setState({
       pokemon: [kantoPokedex.pokemon_entries]
     })
   }
 
+  // pass this function as props to Sidebar component
   async fetchPokemonByName(name) {
+    // name argument will be event.target.dataset.name
+    // use this to make a new API call for Pokemon details
+    // then setState this.state.focus
     const fetchedPokemon = await P.getPokemonByName(name)
     this.setState({
       focus: fetchedPokemon
@@ -47,10 +55,11 @@ class App extends Component {
     this.state.focus["src"] =  src
   }
 
-  async getType(e) {
+    // pass this function as props to Menu component
+  async getRegion(e) {
+    // returned argument will be event.target.dataset.type
+    // use to generate new Pokedex and setState
     const regionPokedex = await P.getPokedexByName(e)
-    console.log(regionPokedex)
-    // console.log(regionPokedex)
     this.setState({
       pokemon: [regionPokedex.pokemon_entries]
     })
@@ -61,12 +70,12 @@ class App extends Component {
 
     return(
       <div className="App overflow-hidden">
-        <Menu getType={this.getType}/>
+        <Menu getRegion={this.getRegion}/>
         <Row className="d-flex justify-content-center">
           <Col xs={3}>
             <Sidebar pokemon={this.state.pokemon} fetchPokemonByName={this.fetchPokemonByName}/>
           </Col>
-          <Col xs={6}>
+          <Col className="d-flex align-items-center" xs={6}>
             <Container focus={this.state.focus} />
           </Col>
         </Row>
