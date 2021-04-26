@@ -7,6 +7,7 @@ class Menu extends Component {
         this.handleClick = this.handleClick.bind(this)
     }
 
+    // Gets data attribute of menu drop down by name and passes to main app's getRegion() function 
     handleClick(e) {
         this.props.getRegion(e.target.dataset.type)
     }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Image, Button, Col, Row} from 'react-bootstrap-v5'
+import {Image, Col, Row} from 'react-bootstrap-v5'
 
 
 class Container extends Component {
@@ -27,6 +27,10 @@ class Container extends Component {
                 /* if a Pokemon is select, return content block */
                 :  
                 (
+
+                // app.state.focus (the selected pokemon from Side bar) is passed to
+                // Container component as this.props.focus. From here, create rows and 
+                // columns to disperse data. .map()'ing data sometimes necessary.
                     
                     <div className="d-flex justify-content-center w-100">
                         <div className="card shadow h-50 w-50 p-2">
@@ -94,11 +98,7 @@ class Container extends Component {
                                             return (
                                                 <Col className="d-flex justify-content-start">
                                                     {stat.stat.name}: {stat.base_stat}
-                                                </Col>
-
-
-                                                
-
+                                                </Col>                                                
                                             )
                                         })}
                                     </Col>
